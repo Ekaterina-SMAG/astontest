@@ -12,6 +12,10 @@ public class Animal {
         System.out.println("Животное" + animal + "бегает и " + run + "плавает." + swim);
     }
 
+    public Animal() {
+        
+    }
+
     public void run(int length){
     }
 
