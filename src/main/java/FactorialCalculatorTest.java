@@ -1,5 +1,6 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.testng.Assert.assertEquals;
 
 public class FactorialCalculatorTest {
@@ -21,5 +22,4 @@ public class FactorialCalculatorTest {
     public void testFactorialOfOne() {
         assertEquals(1, calculator.factorial(1), "Факториал 1 должен быть 1");
     }
-    
 }
