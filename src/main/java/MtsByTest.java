@@ -16,7 +16,7 @@ public class MtsByTest {
 
     @BeforeEach
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        System.setProperty("web driver.chrome.driver", "path/to/chromedriver");
         driver = new ChromeDriver();
         driver.get("https://www.mts.by");
     }
@@ -50,5 +50,7 @@ public class MtsByTest {
         if (driver != null) {
             driver.quit();
         }
+        assert driver != null;
+        driver.quit();
     }
 }
