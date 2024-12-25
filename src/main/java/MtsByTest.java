@@ -50,6 +50,7 @@ public class MtsByTest {
         if (driver != null) {
             driver.quit();
         }
+
         assert driver != null;
         driver.quit();
     }
