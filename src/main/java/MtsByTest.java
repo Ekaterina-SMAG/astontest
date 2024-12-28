@@ -6,10 +6,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-        import java.util.List;
+import java.time.Duration;
+import java.util.List;
 
 public class MtsByTest {
     private WebDriver driver;
@@ -18,19 +21,26 @@ public class MtsByTest {
     public void setUp() {
         System.setProperty("web driver.chrome.driver", "path/to/chromedriver");
         driver = new ChromeDriver();
-        driver.get("http://mts.by/");
+        driver.get("https://www.mts.by/");
     }
 
     @Test
     public void testOnlineReplenishmentBlock() {
 
-        WebElement blockTitle = driver.findElement(By.xpath("//h3[text()='Онлайн пополнение без комиссии']"));
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+
+        WebElement blockTitle = driver.findElement(By.xpath("//*[@id='pay-section']/div/div/div[2]/section/div/h2"));
         assertNotNull(blockTitle, "Блок 'Онлайн пополнение без комиссии' не найден.");
 
 
-        List<WebElement> paymentLogos = driver.findElements(By.cssSelector("selector-for-payment-logos"));
+        List<WebElement> paymentLogos = driver.findElements(By.cssSelector("#pay-section > div > div > div.col-12.col-xl-8 > section > div > div.pay__partners > ul > li:nth-child(1) > img"));
         assertFalse(paymentLogos.isEmpty(), "Логотипы платёжных систем не найдены.");
 
+
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='pay-section']/div/div/div[2]/section/div/a")));
+        element.click();
 
         WebElement moreInfoLink = driver.findElement(By.linkText("Подробнее о сервисе"));
         moreInfoLink.click();
@@ -55,3 +65,4 @@ public class MtsByTest {
         driver.quit();
     }
 }
+
