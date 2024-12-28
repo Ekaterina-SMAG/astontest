@@ -41,18 +41,18 @@ public class MtsByTest {
         assertFalse(paymentLogos.isEmpty(), "Логотипы платёжных систем не найдены.");
 
 
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='pay-section']/div/div/div[2]/section/div/a")));
-        element.click();
-
-
         try {
-            WebElement closeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cookie__close-button")));
+            WebElement closeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#bxdynamic_cookies-agreement-pt1_start")));
 
             closeButton.click();
         } catch (NoSuchElementException e) {
 
             System.out.println("Уведомление о куки не найдено.");
         }
+
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='pay-section']/div/div/div[2]/section/div/a")));
+        element.click();
+
 
         WebElement moreInfoLink = driver.findElement(By.xpath("//*[@id='pay-section']/div/div/div[2]/section/div/a"));
         moreInfoLink.click();
