@@ -42,7 +42,7 @@ public class MtsByTest {
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='pay-section']/div/div/div[2]/section/div/a")));
         element.click();
 
-        WebElement moreInfoLink = driver.findElement(By.linkText("Подробнее о сервисе"));
+        WebElement moreInfoLink = driver.findElement(By.xpath("//*[@id='pay-section']/div/div/div[2]/section/div/a"));
         moreInfoLink.click();
         assertEquals("https://www.mts.by/online-replenishment-details", driver.getCurrentUrl(), "Ссылка 'Подробнее о сервисе' не работает.");
         driver.navigate().back();
