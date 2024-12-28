@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.concurrent.TimeoutException;
 
 public class MtsByTest {
     private WebDriver driver;
@@ -41,6 +43,16 @@ public class MtsByTest {
 
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='pay-section']/div/div/div[2]/section/div/a")));
         element.click();
+
+
+        try {
+            WebElement closeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cookie__close-button")));
+
+            closeButton.click();
+        } catch (NoSuchElementException e) {
+
+            System.out.println("Уведомление о куки не найдено.");
+        }
 
         WebElement moreInfoLink = driver.findElement(By.xpath("//*[@id='pay-section']/div/div/div[2]/section/div/a"));
         moreInfoLink.click();
