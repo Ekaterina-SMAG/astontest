@@ -19,18 +19,18 @@ public class OnlineReplenishmentTest {
 
     @Test
     public void testOnlineReplenishmentFlow() {
-        // Проверка названия блока
+
         String blockTitle = onlineReplenishmentPage.getBlockTitle();
         assertEquals("Онлайн пополнение без комиссии", blockTitle);
 
-        // Проверка наличия вариантов оплаты услуг
+
         assertFalse(onlineReplenishmentPage.getPaymentOptions().isEmpty(), "Опции оплаты не найдены.");
 
-        // Проверка надписей в незаполненных полях для каждого типа оплаты
+
         onlineReplenishmentPage.selectServiceType("Услуги связи");
         assertTrue(onlineReplenishmentPage.getPlaceholderTexts().stream().anyMatch(element -> element.getText().contains("Введите номер")), "Плейсхолдер не найден для 'Услуги связи'.");
 
-        // Проверка для остальных типов (домашний интернет, рассрочка, задолженность)
+
         onlineReplenishmentPage.selectServiceType("Домашний интернет");
         assertTrue(onlineReplenishmentPage.getPlaceholderTexts().stream().anyMatch(element -> element.getText().contains("Введите номер")), "Плейсхолдер не найден для 'Домашний интернет'.");
 
@@ -40,13 +40,12 @@ public class OnlineReplenishmentTest {
         onlineReplenishmentPage.selectServiceType("Задолженность");
         assertTrue(onlineReplenishmentPage.getPlaceholderTexts().stream().anyMatch(element -> element.getText().contains("Введите номер")), "Плейсхолдер не найден для 'Задолженность'.");
 
-        // Заполнение полей и проверка работы кнопки «Продолжить»
+
         onlineReplenishmentPage.selectServiceType("Услуги связи");
         onlineReplenishmentPage.enterPhoneNumber("297777777");
         onlineReplenishmentPage.clickContinue();
 
-        // Проверка отображения суммы и телефона в новом окне
-        // Здесь вам нужно будет добавить проверки для подтверждения отображения суммы и телефона.
+
 
         assertTrue(onlineReplenishmentPage.isSuccessMessageDisplayed(), "Кнопка 'Продолжить' не работает.");
     }
